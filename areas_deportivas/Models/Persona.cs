@@ -7,21 +7,21 @@ public partial class Persona
 {
     public Guid Id { get; set; }
 
-    public string? Nombre { get; set; }
+    public required string Nombre { get; set; }
 
-    public string Email { get; set; } = null!;
+    public required string Email { get; set; }
 
-    public string Username { get; set; } = null!;
+    public required string Username { get; set; }
 
-    public string Password { get; set; } = null!;
+    public required string Password { get; set; }
 
-    public string Role { get; set; } = null!;
+    public Role Role { get; set; }
 
     public Guid TipoPersonaId { get; set; }
 
-    public virtual Administrador TipoPersona { get; set; } = null!;
+    public required virtual Administrador TipoPersona { get; set; }
 
-    public virtual Usuario TipoPersona1 { get; set; } = null!;
+    public required virtual Usuario TipoPersona1 { get; set; }
 
-    public virtual Instructor TipoPersonaNavigation { get; set; } = null!;
+    public required virtual Instructor TipoPersonaNavigation { get; set; }
 }
