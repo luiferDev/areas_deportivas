@@ -1,0 +1,9 @@
+public enum Tipo
+{
+	FOOTBALL,
+	TENIS,
+	BASKETBALL,
+	GIMNASIO,
+	BILLAR,
+	PISCINA
+}
