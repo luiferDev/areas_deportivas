@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/areas_deportivas.props" />
+</Project>
