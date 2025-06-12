@@ -7,7 +7,7 @@ public partial class Usuario
 {
     public Guid Id { get; set; }
 
-    public virtual Persona? Persona { get; set; }
+    public required virtual Persona Persona { get; set; }
 
-    public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
+    public required virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }
