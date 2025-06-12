@@ -7,7 +7,7 @@ public partial class Instructor
 {
     public Guid Id { get; set; }
 
-    public string? Especialidad { get; set; }
+    public required string Especialidad { get; set; }
 
     public virtual Persona? Persona { get; set; }
 }
