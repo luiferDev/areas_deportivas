@@ -13,13 +13,13 @@ public partial class Reserva
 
     public DateTimeOffset HoraFin { get; set; }
 
-    public string EstadoReserva { get; set; } = null!;
+    public Estado EstadoReserva { get; set; }
 
-    public Guid IdUsuario { get; set; }
+	public Guid IdUsuario { get; set; }
 
     public int IdAreaDeportiva { get; set; }
 
-    public virtual AreaDeportiva IdAreaDeportivaNavigation { get; set; } = null!;
+    public required virtual AreaDeportiva IdAreaDeportivaNavigation { get; set; }
 
-    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+    public required virtual Usuario IdUsuarioNavigation { get; set; }
 }
