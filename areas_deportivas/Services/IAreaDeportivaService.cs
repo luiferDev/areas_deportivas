@@ -2,5 +2,6 @@ namespace areas_deportivas.Services;
 
 public interface IAreaDeportivaService
 {
-	Task CambiarDisponibilidad();
+	Task ActualizarDisponibilidadAsync(int areaId);
+	Task ActualizarTodasLasDisponibilidadesAsync();
 }
