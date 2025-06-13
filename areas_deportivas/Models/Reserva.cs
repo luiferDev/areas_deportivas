@@ -15,11 +15,11 @@ public partial class Reserva
 
     public Estado EstadoReserva { get; set; }
 
-	public Guid IdUsuario { get; set; }
+    public Guid IdUsuario { get; set; }
 
     public int IdAreaDeportiva { get; set; }
 
-    public required virtual AreaDeportiva IdAreaDeportivaNavigation { get; set; }
+    public virtual AreaDeportiva IdAreaDeportivaNavigation { get; set; } = null!;
 
-    public required virtual Usuario IdUsuarioNavigation { get; set; }
+    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 }
