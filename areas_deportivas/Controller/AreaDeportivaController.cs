@@ -1,5 +1,6 @@
 using areas_deportivas.Models;
 using areas_deportivas.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace areas_deportivas.Controller;
@@ -14,8 +15,9 @@ public class AreaDeportivaController : ControllerBase
 	{
 		_context = context;
 	}
-	
+
 	[HttpPost]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> CrearAreaDeportivaAsync([FromBody] CreateAreaDeportivaDto createAreaDeportiva)
 	{
 		try
