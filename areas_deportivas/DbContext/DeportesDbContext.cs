@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace areas_deportivas.Models;
 
@@ -28,19 +30,18 @@ public partial class DeportesDbContext : DbContext
             entity.ToTable("area_deportiva");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
             entity.Property(e => e.Disponibilidad).HasColumnName("disponibilidad");
             entity.Property(e => e.Nombre)
                 .HasColumnType("character varying")
                 .HasColumnName("nombre");
-			entity.Property(e => e.TipoArea)
-				.HasColumnType("character varying")
-				.HasColumnName("tipo_area").HasConversion(
-					type => type.ToString(),
-					type => Enum.Parse<Tipo>(type)
+            entity.Property(e => e.TipoArea)
+                .HasColumnName("tipo_area").HasConversion(
+						v => v.ToString(),
+						v => Enum.Parse<Tipo>(v)
 				);
-		});
+        });
 
         modelBuilder.Entity<Reserva>(entity =>
         {
@@ -52,17 +53,16 @@ public partial class DeportesDbContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.EstadoReserva)
-                .HasColumnType("character varying")
                 .HasColumnName("estado_reserva").HasConversion(
-						type => type.ToString(),
-						type => Enum.Parse<Estado>(type)
+						v => v.ToString(),
+						v => Enum.Parse<Estado>(v)
 				);
             entity.Property(e => e.Fecha).HasColumnName("fecha");
             entity.Property(e => e.HoraFin)
-                .HasColumnType("time with time zone")
+                .HasPrecision(0)
                 .HasColumnName("hora_fin");
             entity.Property(e => e.HoraInicio)
-                .HasColumnType("time with time zone")
+                .HasPrecision(0)
                 .HasColumnName("hora_inicio");
             entity.Property(e => e.IdAreaDeportiva).HasColumnName("id_area_deportiva");
             entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
@@ -79,29 +79,28 @@ public partial class DeportesDbContext : DbContext
         });
 
         modelBuilder.Entity<Usuario>(entity =>
-		{
-			entity.HasKey(e => e.Id).HasName("usuario_pkey");
+        {
+            entity.HasKey(e => e.Id).HasName("usuario_pkey");
 
-			entity.ToTable("usuario");
+            entity.ToTable("usuario");
 
-			entity.Property(e => e.Id)
-				.ValueGeneratedNever()
-				.HasColumnName("id");
-			entity.Property(e => e.Email)
-				.HasColumnType("character varying")
-				.HasColumnName("email");
-			entity.Property(e => e.Nombre)
-				.HasColumnType("character varying")
-				.HasColumnName("nombre");
-			entity.Property(e => e.Password)
-				.HasColumnType("character varying")
-				.HasColumnName("password");
-			entity.Property(e => e.ReservaId).HasColumnName("reserva_id");
-			entity.Property(e => e.Role)
-				.HasColumnType("character varying")
-				.HasColumnName("role").HasConversion(
-						type => type.ToString(),
-						type => Enum.Parse<Role>(type)
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Email)
+                .HasColumnType("character varying")
+                .HasColumnName("email");
+            entity.Property(e => e.Nombre)
+                .HasColumnType("character varying")
+                .HasColumnName("nombre");
+            entity.Property(e => e.Password)
+                .HasColumnType("character varying")
+                .HasColumnName("password");
+            entity.Property(e => e.ReservaId).HasColumnName("reserva_id");
+            entity.Property(e => e.Role)
+                .HasColumnName("role").HasConversion(
+						v => v.ToString(),
+						v => Enum.Parse<Role>(v)
 				);
         });
 
