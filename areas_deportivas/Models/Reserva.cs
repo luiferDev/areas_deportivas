@@ -9,9 +9,9 @@ public partial class Reserva
 
     public DateOnly Fecha { get; set; }
 
-    public DateTimeOffset HoraInicio { get; set; }
+    public TimeOnly HoraInicio { get; set; }
 
-    public DateTimeOffset HoraFin { get; set; }
+    public TimeOnly HoraFin { get; set; }
 
     public Estado EstadoReserva { get; set; }
 
