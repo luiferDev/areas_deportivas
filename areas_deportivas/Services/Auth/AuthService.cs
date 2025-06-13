@@ -31,23 +31,43 @@ public class AuthService(UserRepository userRepository, IConfiguration configura
 		return true;
 	}
 
-	public async Task<bool> RegisterAdminAsync(string name, string password, string? email)
+	public async Task<bool> RegisterAdminAsync(UserRegisterDto usuario)
 	{
-		if (await userRepository.GetByUsernameAsync(email) != null)
+		if (await userRepository.GetByUsernameAsync(usuario.Email) != null)
 			return false; // Usuario ya existe.
 
-		var hashedPassword = PasswordHasher.HashPassword(password);
+		var hashedPassword = PasswordHasher.HashPassword(usuario.Password);
 
 		var admin = new Usuario
 		{
 			Id = Guid.NewGuid(),
-			Nombre = name,
-			Email = email ?? string.Empty,
+			Nombre = usuario.Nombre,
+			Email = usuario.Email ?? string.Empty,
 			Password = hashedPassword,
 			Role = Role.Admin
 		};
 
 		await userRepository.AddUserAsync(admin);
+		return true;
+	}
+
+	public async Task<bool> EmployeeRegisterAsync(EmployeeRegisterDto empleado)
+	{
+		if (await userRepository.GetByUsernameAsync(empleado.Email) != null)
+			return false; // Usuario ya existe.
+
+		var hashedPassword = PasswordHasher.HashPassword(empleado.Password);
+
+		var employee = new Usuario
+		{
+			Id = Guid.NewGuid(),
+			Nombre = empleado.Nombre,
+			Email = empleado.Email ?? string.Empty,
+			Password = hashedPassword,
+			Role = Enum.TryParse<Role>(empleado.Rol, out var role) ? role : throw new ArgumentException("Rol inválido", nameof(empleado.Rol))
+		};
+
+		await userRepository.AddUserAsync(employee);
 		return true;
 	}
 
