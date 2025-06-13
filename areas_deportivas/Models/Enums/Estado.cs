@@ -2,5 +2,6 @@ public enum Estado
 {
 	CONFIRMADA,
 	NO_CONFIRMADA,
+	PENDIENTE,
 	CANCELADA
 }
