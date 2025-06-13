@@ -8,5 +8,5 @@ namespace areas_deportivas.Services;
 public interface IReservaService
 {
 	Task<ReservaRespuestaDto> ReservarAsync(CrearReservaDto crearReserva, int Id, Guid userId);
-	Task CancelarReservaAsync();
+	Task CancelarReservaAsync(Guid reservaId);
 }
