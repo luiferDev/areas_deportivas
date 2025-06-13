@@ -1,4 +1,6 @@
 
+using areas_deportivas.Models.DTO;
+
 namespace areas_deportivas.Services;
 public class UsuarioService : IUsuarioService
 {
@@ -8,18 +10,14 @@ public class UsuarioService : IUsuarioService
 	{
 		_reservaService = reservaService;
 	}
-	public async Task CancelarArea()
-	{
-		await _reservaService.CancelarReserva();
-	}
-
-	public void ReservarArea()
+	
+	public Task CancelarAreaAsync()
 	{
 		throw new NotImplementedException();
 	}
 
-	Task IUsuarioService.ReservarArea()
+	public async Task<ReservaRespuestaDto> ReservarAreaAsync(CrearReservaDto crearReserva, int idArea, Guid userId)
 	{
-		throw new NotImplementedException();
+		return await _reservaService.ReservarAsync(crearReserva, idArea, userId);
 	}
 }
