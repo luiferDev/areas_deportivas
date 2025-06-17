@@ -5,6 +5,7 @@ using areas_deportivas.Services.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 
 DotNetEnv.Env.Load();
 
@@ -86,15 +87,32 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(opt =>
 	};
 });
 
+var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString)
+	.EnableUnmappedTypes()             // 👈 así permites enums no mapeados
+	.MapEnum<UserRole>("user_role")
+	.MapComposite<Usuario>()
+	.MapEnum<Tipo>("tipo")
+	.MapComposite<AreaDeportiva>()
+	.MapEnum<Estado>("estado")
+	.MapComposite<Reserva>();
+
+await using var dataSource = dataSourceBuilder.Build();
+
+builder.Services.AddDbContext<DeportesDbContext>(options =>
+	options.UseNpgsql(dataSource, o => {
+		o.MapEnum<UserRole>("user_role");
+		o.MapEnum<Tipo>("tipo");
+		o.MapEnum<Estado>("estado");
+	}));
+
+
 // Configurar CORS
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowSpecificOrigins", policy =>
 	{
 		policy.WithOrigins("http://localhost:5173",
-				"http://localhost:5173/login",
-				"https://zorvanz.vercel.app",
-				"https://zorvanz.vercel.app/login") // Especificar dominios permitidos
+				"https://zorvanz.vercel.app") // Especificar dominios permitidos
 			.AllowAnyHeader() // Permitir cualquier encabezado
 			.AllowAnyMethod() // Permitir cualquier método HTTP (GET, POST, etc.)
 			.AllowCredentials(); // Permitir cookies o credenciales
