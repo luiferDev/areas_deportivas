@@ -13,9 +13,7 @@ public partial class Usuario
 
     public string Password { get; set; } = null!;
 
-    public Role Role { get; set; }
-
-    public Guid? ReservaId { get; set; }
+    public UserRole Role { get; set; }
 
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }
