@@ -142,3 +142,4 @@
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
+/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/obj/Debug/net9.0/areas_deportivas.sourcelink.json
