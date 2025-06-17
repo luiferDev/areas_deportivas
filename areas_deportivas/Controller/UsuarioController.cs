@@ -19,7 +19,7 @@ public class UsuarioController : ControllerBase
 		_usuarioService = usuarioService;
 	}
 
-	[HttpPost]
+	[HttpPost("reservar")]
 	[Authorize(Roles = "User")]
 	public async Task<IActionResult> ReservarAreaAsync([FromQuery] int Id, [FromBody] CrearReservaDto crearReserva)
 	{
