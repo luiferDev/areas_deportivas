@@ -52,7 +52,7 @@ public class ReservaService : IReservaService
 			Fecha = crearReserva.Fecha,
 			HoraInicio = crearReserva.HoraInicio,
 			HoraFin = crearReserva.HoraFin,
-			EstadoReserva = Estado.PENDIENTE,
+			EstadoReserva = Estado.CONFIRMADA,
 			IdUsuario = userId,
 			IdAreaDeportiva = area.Id
 		};
@@ -69,8 +69,10 @@ public class ReservaService : IReservaService
 			{
 				Id = area.Id,
 				Nombre = area.Nombre,
+				Description = area.Description,
 				TipoArea = area.TipoArea.ToString(),
-				Disponibilidad = area.Disponibilidad
+				Disponibilidad = area.Disponibilidad,
+				Precio = area.Precio
 			},
 			Reserva = new ReservaDto
 			{
