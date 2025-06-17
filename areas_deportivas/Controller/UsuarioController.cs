@@ -64,4 +64,91 @@ public class UsuarioController : ControllerBase
 			return BadRequest("Error al reservar el área deportiva.");
 		}
 	}
+	
+	[HttpPost("cancelar")]
+	public async Task<IActionResult> CancelarReservacionAsync ([FromQuery] Guid reservaId)
+	{
+		try
+		{
+			await _usuarioService.CancelarAreaAsync(reservaId);
+			return Ok(new
+			{
+				message = "Reservación cancelada exitosamente."
+			});
+
+		}
+		catch (Exception ex)
+		{
+			// Manejar cualquier error que ocurra durante el proceso de reserva
+			Console.WriteLine(ex.Message);
+			return BadRequest("Error al reservar el área deportiva.");
+		}
+	}
+	
+	[HttpGet("user")]
+	public IActionResult GetUserInfo([FromQuery] string email)
+	{
+		var user = _context.Usuarios.FirstOrDefault(u => u.Email == email);
+		if (user == null)
+		{
+			return NotFound("Usuario no encontrado.");
+		}
+
+		var userId = user.Id;
+		var userName = user.Nombre;
+		var userEmail = user.Email;
+		var userRole = user.Role.ToString();
+
+		var userInfo = new
+		{
+			Id = userId,
+			Nombre = userName,
+			Email = userEmail,
+			Rol = userRole
+		};
+
+		return Ok(userInfo);
+	}
+	
+	[HttpGet("reservaciones")]
+	public Task<IActionResult> GetReservasByUserAsync([FromQuery] Guid userId)
+	{
+		try
+		{
+			var reservas =  _context.Reservas;
+			var reservasUsuario = from reserva in reservas
+				join area in _context.AreaDeportivas on reserva.IdAreaDeportiva equals area.Id
+				where reserva.IdUsuario == userId
+				select new
+				{
+					Reserva = new
+					{
+						reserva.Id,
+						reserva.Fecha,
+						reserva.HoraInicio,
+						reserva.HoraFin,
+						Estado = reserva.EstadoReserva.ToString(),
+					},
+					AreaDeportiva = new
+					{
+						area.Id,
+						area.Nombre,
+						area.Description,
+						area.TipoArea,
+						area.Disponibilidad,
+						area.ImageUrl,
+						area.Precio
+					}
+				};
+
+			return !reservasUsuario.Any() 
+				? Task.FromResult<IActionResult>(NotFound("No se encontraron reservas para el usuario.")) 
+				: Task.FromResult<IActionResult>(Ok(reservasUsuario));
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex.Message);
+			return Task.FromResult<IActionResult>(BadRequest("Error al obtener las reservas del usuario."));
+		}
+	}
 }
