@@ -2,6 +2,7 @@ using areas_deportivas.Models;
 using areas_deportivas.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace areas_deportivas.Controller;
 
@@ -33,6 +34,19 @@ public class AreaDeportivaController : ControllerBase
 			await _context.SaveChangesAsync();
 
 			return Ok(areaDeportiva);
+		}
+		catch (Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
+	}
+	[HttpGet]
+	public async Task<IActionResult> ObtenerAreasDeportivasAsync()
+	{
+		try
+		{
+			var areasDeportivas = await _context.AreaDeportivas.ToListAsync();
+			return Ok(areasDeportivas);
 		}
 		catch (Exception ex)
 		{
