@@ -23,6 +23,7 @@ public class AreaDeportivaController : ControllerBase
 	{
 		try
 		{
+			// TODO: completar parametros para poder crear un area deportiva
 			var areaDeportiva = new AreaDeportiva
 			{
 				Nombre = createAreaDeportiva.Nombre,
