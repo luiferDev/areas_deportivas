@@ -8,5 +8,4 @@ public class CrearReservaDto
 
 	public TimeOnly HoraFin { get; set; }
 
-	public int IdAreaDeportiva { get; set; }
 }
