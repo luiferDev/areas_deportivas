@@ -1,0 +1,7 @@
+﻿services:
+  areas_deportivas:
+    image: areas_deportivas
+    build:
+      context: .
+      dockerfile: areas_deportivas/Dockerfile
+
