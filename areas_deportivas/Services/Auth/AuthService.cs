@@ -24,7 +24,7 @@ public class AuthService(UserRepository userRepository, IConfiguration configura
 			Nombre = usuario.Nombre,
 			Email = usuario.Email,
 			Password = hashedPassword,
-			Role = Role.User
+			Role = UserRole.User
 		};
 
 		await userRepository.AddUserAsync(user);
@@ -44,7 +44,7 @@ public class AuthService(UserRepository userRepository, IConfiguration configura
 			Nombre = usuario.Nombre,
 			Email = usuario.Email ?? string.Empty,
 			Password = hashedPassword,
-			Role = Role.Admin
+			Role = UserRole.Admin
 		};
 
 		await userRepository.AddUserAsync(admin);
@@ -64,7 +64,7 @@ public class AuthService(UserRepository userRepository, IConfiguration configura
 			Nombre = empleado.Nombre,
 			Email = empleado.Email ?? string.Empty,
 			Password = hashedPassword,
-			Role = Enum.TryParse<Role>(empleado.Rol, out var role) ? role : throw new ArgumentException("Rol inválido", nameof(empleado.Rol))
+			Role = Enum.TryParse<UserRole>(empleado.Rol, out var role) ? role : throw new ArgumentException("Rol inválido", nameof(empleado.Rol))
 		};
 
 		await userRepository.AddUserAsync(employee);
@@ -93,6 +93,7 @@ public class AuthService(UserRepository userRepository, IConfiguration configura
 		{
 			Subject = new ClaimsIdentity([
 				new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+				new Claim(ClaimTypes.Name, user.Nombre),
 				new Claim(ClaimTypes.Email, user.Email ?? throw new InvalidOperationException()),
 				new Claim(ClaimTypes.Role, user.Role.ToString())
 			]),
