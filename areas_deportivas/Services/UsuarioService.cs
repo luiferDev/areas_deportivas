@@ -11,9 +11,9 @@ public class UsuarioService : IUsuarioService
 		_reservaService = reservaService;
 	}
 	
-	public Task CancelarAreaAsync()
+	public Task CancelarAreaAsync(Guid reservaId)
 	{
-		throw new NotImplementedException();
+		return _reservaService.CancelarReservaAsync(reservaId);
 	}
 
 	public async Task<ReservaRespuestaDto> ReservarAreaAsync(CrearReservaDto crearReserva, int idArea, Guid userId)
