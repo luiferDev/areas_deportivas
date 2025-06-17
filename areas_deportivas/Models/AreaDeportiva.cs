@@ -13,5 +13,11 @@ public partial class AreaDeportiva
 
     public bool Disponibilidad { get; set; }
 
+    public string? Description { get; set; }
+
+    public string? ImageUrl { get; set; }
+
+    public decimal Precio { get; set; }
+
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }
