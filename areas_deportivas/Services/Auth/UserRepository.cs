@@ -1,3 +1,4 @@
+using areas_deportivas.DbContext;
 using areas_deportivas.Models;
 using Microsoft.EntityFrameworkCore;
 
