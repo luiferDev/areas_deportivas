@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using areas_deportivas.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace areas_deportivas.Models;
+namespace areas_deportivas.DbContext;
 
-public partial class DeportesDbContext : DbContext
+public partial class DeportesDbContext : Microsoft.EntityFrameworkCore.DbContext
 {
     public DeportesDbContext()
     {
