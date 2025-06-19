@@ -1,5 +1,7 @@
 using NpgsqlTypes;
 
+namespace areas_deportivas.Models.Enums;
+
 public enum Estado
 {
 	[PgName("CONFIRMADA")]
