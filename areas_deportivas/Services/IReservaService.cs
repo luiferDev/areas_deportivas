@@ -9,4 +9,6 @@ public interface IReservaService
 {
 	Task<ReservaRespuestaDto> ReservarAsync(CrearReservaDto crearReserva, int Id, Guid userId);
 	Task CancelarReservaAsync(Guid reservaId);
+	Task EliminarReservaAsync(Guid reservaId);
+	Task ActualizarReservaAsync(Guid reservaId, ActualizarReservaDto actualizarReserva);
 }
