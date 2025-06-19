@@ -1,4 +1,4 @@
-using areas_deportivas.Models;
+namespace areas_deportivas.Models.DTO;
 
 public class CrearReservaDto
 {
