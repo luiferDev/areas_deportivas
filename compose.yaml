@@ -4,4 +4,23 @@
     build:
       context: .
       dockerfile: areas_deportivas/Dockerfile
+    container_name: areas_deportivas
+    ports:
+        - "5223:5223"
+    depends_on:
+        - db
+  db:
+     image: postgres:16
+     container_name: areas_deportivas
+     environment:
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: postgres
+       POSTGRES_DB: areas_deportivas
+     ports:
+       - "5432:5432"
+     volumes:
+       - db-server:/var/lib/postgresql/data
+          
+volumes:
+   db-server:
 
