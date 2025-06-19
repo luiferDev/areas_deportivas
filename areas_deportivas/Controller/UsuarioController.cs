@@ -68,6 +68,7 @@ public class UsuarioController : ControllerBase
 	}
 	
 	[HttpPost("cancelar")]
+	[Authorize(Roles = "User")]
 	public async Task<IActionResult> CancelarReservacionAsync ([FromQuery] Guid reservaId)
 	{
 		try
@@ -113,6 +114,7 @@ public class UsuarioController : ControllerBase
 	}
 	
 	[HttpGet("reservaciones")]
+	[Authorize(Roles = "User")]
 	public Task<IActionResult> GetReservasByUserAsync([FromQuery] Guid userId)
 	{
 		try
