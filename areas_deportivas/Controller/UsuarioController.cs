@@ -138,7 +138,7 @@ public class UsuarioController : ControllerBase
 						area.Id,
 						area.Nombre,
 						area.Description,
-						area.TipoArea,
+						TipoArea = area.TipoArea.ToString(),
 						area.Disponibilidad,
 						area.ImageUrl,
 						area.Precio
