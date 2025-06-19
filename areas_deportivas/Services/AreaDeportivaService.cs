@@ -1,4 +1,6 @@
+using areas_deportivas.DbContext;
 using areas_deportivas.Models;
+using areas_deportivas.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace areas_deportivas.Services;
