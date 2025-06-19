@@ -1,7 +1,9 @@
+using areas_deportivas.DbContext;
 using areas_deportivas.Models;
 using areas_deportivas.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 
 namespace areas_deportivas.Controller;
@@ -11,10 +13,12 @@ namespace areas_deportivas.Controller;
 public class AreaDeportivaController : ControllerBase
 {
 	private readonly DeportesDbContext _context;
+	private readonly IOutputCacheStore _outputCacheStore;
 
-	public AreaDeportivaController(DeportesDbContext context)
+	public AreaDeportivaController(DeportesDbContext context, IOutputCacheStore outputCacheStore)
 	{
 		_context = context;
+		_outputCacheStore = outputCacheStore;
 	}
 
 	[HttpPost]
@@ -33,6 +37,7 @@ public class AreaDeportivaController : ControllerBase
 
 			_context.AreaDeportivas.Add(areaDeportiva);
 			await _context.SaveChangesAsync();
+			await _outputCacheStore.EvictByTagAsync("areas", CancellationToken.None);
 
 			return Ok(areaDeportiva);
 		}
@@ -42,6 +47,7 @@ public class AreaDeportivaController : ControllerBase
 		}
 	}
 	[HttpGet]
+	[OutputCache(PolicyName = "areas")]
 	public async Task<IActionResult> ObtenerAreasDeportivasAsync()
 	{
 		try
