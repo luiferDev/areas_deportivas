@@ -155,4 +155,39 @@ public class UsuarioController : ControllerBase
 			return Task.FromResult<IActionResult>(BadRequest("Error al obtener las reservas del usuario."));
 		}
 	}
+	
+	[HttpDelete("eliminar-reservacion")]
+	[Authorize(Roles = "User")]
+	public async Task<IActionResult> DeleteReservationAsync([FromQuery] Guid reservaId)
+	{
+		try
+		{
+			await _usuarioService.EliminarAreaAsync(reservaId);
+			return Ok(new
+			{
+				message = "Reservación eliminada exitosamente."
+			});
+		}
+		catch (Exception ex)
+		{
+			return BadRequest("Error al eliminar la reservación.");
+		}
+	}
+	[HttpPatch("editar-reservacion")]
+	[Authorize(Roles = "User")]
+	public async Task<IActionResult> EditReservationAsync([FromQuery] Guid reservaId, [FromBody] ActualizarReservaDto editarReserva)
+	{
+		try
+		{
+			await _usuarioService.ActualizarAreaAsync(reservaId, editarReserva);
+			return Ok(new
+			{
+				message = "Reservación editada exitosamente."
+			});
+		}
+		catch (Exception ex)
+		{
+			return BadRequest("Error al editar la reservación.");
+		}
+	}
 }
