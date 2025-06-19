@@ -1,11 +1,15 @@
 using System.Text;
+using areas_deportivas.DbContext;
 using areas_deportivas.Models;
+using areas_deportivas.Models.Enums;
 using areas_deportivas.Services;
 using areas_deportivas.Services.Auth;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Npgsql;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 DotNetEnv.Env.Load();
 
@@ -16,6 +20,15 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddOutputCache(options =>
+{
+	options.AddPolicy("areas", policyBuilder => policyBuilder
+		.Expire(TimeSpan.FromHours(8)).Tag("areas "));
+});
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddFluentValidationAutoValidation();
 
 // Configurar servicios de Swagger
 builder.Services.AddSwaggerGen(c =>
@@ -148,6 +161,8 @@ if (app.Environment.IsDevelopment())
 		c.RoutePrefix = string.Empty; // Para que Swagger esté en la raíz del proyecto
 	});
 }
+
+app.UseOutputCache();
 
 app.UseHttpsRedirection();
 
