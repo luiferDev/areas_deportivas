@@ -3,6 +3,8 @@ using areas_deportivas.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using areas_deportivas.DbContext;
+using areas_deportivas.Models.DTO;
 
 namespace areas_deportivas.Controller;
 
