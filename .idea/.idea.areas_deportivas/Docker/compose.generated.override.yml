@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  migrator:
+    build:
+      context: "/home/luifer991/Escritorio/Dev/areas_deportivas"
+      dockerfile: "areas_deportivas/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/areas_deportivas.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "areas_deportivas:dev"
+    ports: []
+    volumes:
+    - "/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas:/app:rw"
+    - "/home/luifer991/Escritorio/Dev/areas_deportivas:/src:rw"
+    - "/home/luifer991/RiderProjects/areas_deportivas/areas_deportivas:/home/app/.nuget/packages"
+    working_dir: "/app"
