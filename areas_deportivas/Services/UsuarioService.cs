@@ -16,6 +16,16 @@ public class UsuarioService : IUsuarioService
 		return _reservaService.CancelarReservaAsync(reservaId);
 	}
 
+	public async Task EliminarAreaAsync(Guid reservaId)
+	{
+		await _reservaService.EliminarReservaAsync(reservaId);
+	}
+
+	public Task ActualizarAreaAsync(Guid reservaId, ActualizarReservaDto actualizarReserva)
+	{
+		return _reservaService.ActualizarReservaAsync(reservaId, actualizarReserva);
+	}
+
 	public async Task<ReservaRespuestaDto> ReservarAreaAsync(CrearReservaDto crearReserva, int idArea, Guid userId)
 	{
 		return await _reservaService.ReservarAsync(crearReserva, idArea, userId);
