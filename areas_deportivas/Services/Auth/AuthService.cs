@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using areas_deportivas.Models;
 using areas_deportivas.Models.DTO;
+using areas_deportivas.Models.Enums;
 using Microsoft.IdentityModel.Tokens;
 
 namespace areas_deportivas.Services.Auth;
