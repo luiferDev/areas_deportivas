@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using areas_deportivas.Models.Enums;
 
 namespace areas_deportivas.Models;
 
