@@ -1,12 +1,9 @@
-
-
-using areas_deportivas.Models;
 using areas_deportivas.Models.DTO;
 using areas_deportivas.Services.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace areas_deportivas.Controllers;
+namespace areas_deportivas.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
