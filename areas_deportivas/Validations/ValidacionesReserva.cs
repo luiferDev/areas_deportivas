@@ -8,11 +8,9 @@ public class ValidacionesReserva : AbstractValidator<CrearReservaDto>
 {
     public ValidacionesReserva()
     {
-        var fechaActual = DateTime.Now;
-        RuleFor(x => x.Fecha).Must((reserva, actual) =>
-        {
-            return actual < reserva.Fecha;
-        }).WithMessage("La fecha de la reserva debe ser mayor a la fecha actual");
+        RuleFor(x => x.Fecha)
+            .Must(fecha => fecha > DateOnly.FromDateTime(DateTime.Now))
+            .WithMessage("La fecha de la reserva debe ser mayor a la fecha actual");
         RuleFor(x => x.HoraInicio).NotEmpty().WithMessage("La hora de inicio es obligatoria");
         RuleFor(x => x.HoraFin).Must((reserva, horaFin) =>
         {
