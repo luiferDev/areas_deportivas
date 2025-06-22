@@ -118,16 +118,31 @@ public class ReservaService : IReservaService
 	{
 		var area = _context.AreaDeportivas.FirstOrDefault(a => a.Id == Id) ?? throw new Exception("Area no encontrada");
 		
-		// Verificar si ya existe una reserva activa para esta área
 		var reservaExistente = await _context.Reservas
-			.AnyAsync(r => r.IdAreaDeportiva == Id && 
-				r.Fecha == crearReserva.Fecha && 
+			.AnyAsync(r =>
+				r.IdAreaDeportiva == Id &&
+				r.Fecha == crearReserva.Fecha &&
+				r.HoraInicio == crearReserva.HoraInicio &&
+				r.HoraFin   == crearReserva.HoraFin   &&
 				r.EstadoReserva != Estado.CANCELADA);
-				
+
 		if (reservaExistente)
-		{
-			throw new Exception("El área deportiva ya está reservada para esta fecha");
-		}
+			throw new Exception("El área ya está reservada en esa fecha y horario");
+		
+		var haySolapamiento = await _context.Reservas
+			.AnyAsync(r =>
+				r.IdAreaDeportiva == Id &&
+				r.Fecha           == crearReserva.Fecha &&
+				r.EstadoReserva   != Estado.CANCELADA &&
+
+				// estas dos comparaciones detectan cualquier traslape
+				r.HoraInicio < crearReserva.HoraFin  &&
+				crearReserva.HoraInicio < r.HoraFin
+			);
+
+		if (haySolapamiento)
+			throw new Exception("Ya hay otra reserva en esa franja horaria");
+
 
 		var reservar = new Reserva
 		{
