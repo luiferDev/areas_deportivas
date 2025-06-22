@@ -6,7 +6,7 @@ public class CreateAreaDeportivaDto
 {
 	public string Nombre { get; set; } = null!;
 	
-	public string Descripcion { get; set; } = null!;
+	public string Description { get; set; } = null!;
 
 	public string ImageUrl { get; set; } = null!;
 	
