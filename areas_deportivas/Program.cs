@@ -125,7 +125,7 @@ builder.Services.AddCors(options =>
 	options.AddPolicy("AllowSpecificOrigins", policy =>
 	{
 		policy.WithOrigins("http://localhost:5173",
-				"https://areas-deportivas-front.vercel.app")
+				"https://areas-deportivas-front.vercel.app/")
 			.AllowAnyHeader() // Permitir cualquier encabezado
 			.AllowAnyMethod() // Permitir cualquier método HTTP (GET, POST, etc.)
 			.AllowCredentials(); // Permitir cookies o credenciales
@@ -151,6 +151,8 @@ var app = builder.Build();
 
 // Aplicar CORS (antes de los controladores)
 app.UseCors("AllowSpecificOrigins");
+
+app.UseRouting();
 
 if (app.Environment.IsDevelopment())
 {
