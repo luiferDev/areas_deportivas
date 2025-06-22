@@ -27,12 +27,14 @@ public class AreaDeportivaController : ControllerBase
 	{
 		try
 		{
-			// TODO: completar parametros para poder crear un area deportiva
 			var areaDeportiva = new AreaDeportiva
 			{
 				Nombre = createAreaDeportiva.Nombre,
+				Description = createAreaDeportiva.Description,
+				ImageUrl = createAreaDeportiva.ImageUrl,
 				TipoArea = createAreaDeportiva.TipoArea,
-				Disponibilidad = true
+				Disponibilidad = true,
+				Precio = createAreaDeportiva.Precio
 			};
 
 			_context.AreaDeportivas.Add(areaDeportiva);
@@ -46,6 +48,7 @@ public class AreaDeportivaController : ControllerBase
 			return BadRequest(ex.Message);
 		}
 	}
+	
 	[HttpGet]
 	[OutputCache(PolicyName = "areas")]
 	public async Task<IActionResult> ObtenerAreasDeportivasAsync()

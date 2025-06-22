@@ -40,7 +40,6 @@
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.Composition.Hosting.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.Composition.Runtime.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.Composition.TypedParts.dll
-/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.Text.Json.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.resources.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.resources.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.resources.dll
@@ -143,3 +142,7 @@
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/obj/Debug/net9.0/areas_deportivas.sourcelink.json
+/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/FluentValidation.dll
+/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/FluentValidation.DependencyInjectionExtensions.dll
+/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/SharpGrip.FluentValidation.AutoValidation.Mvc.dll
+/home/luifer991/Escritorio/Dev/areas_deportivas/areas_deportivas/bin/Debug/net9.0/SharpGrip.FluentValidation.AutoValidation.Shared.dll
