@@ -164,7 +164,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseOutputCache();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
