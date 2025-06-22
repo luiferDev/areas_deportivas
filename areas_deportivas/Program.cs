@@ -152,8 +152,6 @@ var app = builder.Build();
 // Aplicar CORS (antes de los controladores)
 app.UseCors("AllowSpecificOrigins");
 
-app.UseRouting();
-
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
