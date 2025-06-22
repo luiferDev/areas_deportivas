@@ -8,7 +8,7 @@ public class ValidacionesCrearAreaDeportiva : AbstractValidator<CreateAreaDeport
     public ValidacionesCrearAreaDeportiva()
     {
         RuleFor(x => x.Nombre).NotEmpty().WithMessage("El nombre es obligatorio");
-        RuleFor(x => x.Descripcion).NotEmpty().WithMessage("La descripción es obligatoria");
+        RuleFor(x => x.Description).NotEmpty().WithMessage("La descripción es obligatoria");
         RuleFor(x => x.ImageUrl).NotNull().NotEmpty().WithMessage("La imagen es obligatoria");
         RuleFor(x => x.TipoArea)
             .IsInEnum().WithMessage("El tipo de área debe estar entre los valores permitidos");
